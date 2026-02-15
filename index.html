@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Serrasika</title> <link rel="stylesheet" href="css/style.css">
+
+    <script src="chart.min.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <h1>Tableau de Bord Serrasika</h1>
+    </header>
+
+    <main class="dashboard-grid">
+
+     <!-- ---------- chargement des donneés de la serre   --------->
+
+            <section class="widget" id="status-widget">
+                <h2><i class="fa-solid fa-temperature-half"></i> État Actuel</h2>
+                
+                <div class="sensor-data-grid">
+                    
+                    <div class="sensor-item color-temp">
+                        <img src="assets/icons/temperature.png" class="sensor-icon">
+                        
+                        <span class="sensor-label">Température</span>
+                        <span class="sensor-value" id="temp-data">--.-</span>
+                        <span class="sensor-unit">°C</span>
+                    </div>
+                    
+                    <div class="sensor-item color-humidity">
+                        <img src="assets/icons/humidity-air.png" class="sensor-icon">
+                        
+                        <span class="sensor-label">Humidité Air</span>
+                        <span class="sensor-value" id="humidity-data">--</span>
+                        <span class="sensor-unit">%</span>
+                    </div>
+
+                    <div class="sensor-item color-soil">
+                        <img src="assets/icons/humidity-soil.png" class="sensor-icon">
+                        
+                        <span class="sensor-label">Humidité Sol</span>
+                        <span class="sensor-value" id="soil-data">--</span>
+                        <span class="sensor-unit">%</span>
+                    </div>
+
+                    <div class="sensor-item color-lux">
+                        <img src="assets/icons/luminosite.png" class="sensor-icon">
+                        
+                        <span class="sensor-label">Luminosité</span>
+                        <span class="sensor-value" id="lux-data">----</span>
+                        <span class="sensor-unit">Lux</span>
+                    </div>
+
+                    <div class="sensor-item color-uv">
+                        <img src="assets/icons/uv-index.png" class="sensor-icon">
+                        
+                        <span class="sensor-label">Niveau UV</span>
+                        <span class="sensor-value" id="uv-data">-</span>
+                        <span class="sensor-unit">Index</span>
+                    </div>
+
+                </div>
+            </section>
+
+ <!-------------------- fin chargement des donneés de la serre ------------->
+
+        <section class="widget" id="controls-widget">
+            <h2><i class="fa-solid fa-sliders"></i> Contrôles (Manuel/Auto)</h2>
+
+                <div class="controls-grid">                    
+                    <div class="control-group">
+                        <h4><i class="fa-solid fa-cloud-rain"></i> Irrigation</h4>
+                        <div class="control-row">
+                            <span class="control-label">Mode Auto</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="toggle-irrigation-auto">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <button class="control-btn" id="btn-irrigation-force">
+                            <i class="fa-solid fa-play"></i> Forcer l'arrosage (5 min)
+                        </button>
+                    </div>
+                    <div class="control-group">
+                        <h4><i class="fa-solid fa-lightbulb"></i> Éclairage (Semis)</h4>
+                        <div class="control-row">
+                            <span class="control-label">Lumières Allumées</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="toggle-lights">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+        <div class="control-group">
+            <h4><i class="fa-solid fa-sun-plant-wilt"></i> Climat</h4>
+            <button class="control-btn" id="btn-blinds-open">
+                <i class="fa-solid fa-angles-up"></i> Ouvrir Stores
+            </button>
+            <button class="control-btn" id="btn-blinds-close">
+                <i class="fa-solid fa-angles-down"></i> Fermer Stores
+            </button>
+            <button class="control-btn" id="btn-vent-open">
+                <i class="fa-solid fa-wind"></i> Ouvrir Ventilation
+            </button>
+        </div>
+
+    </div>
+        </section>
+
+        <section class="widget" id="charts-widget">
+            <h2><i class="fa-solid fa-chart-line"></i> Activité (Dernières 24h)</h2>
+
+            <h3 class="chart-title">Température (°C)</h3>
+            
+            <canvas id="temperature-chart"></canvas>
+
+            <h3 class="chart-title">Humidité du Sol (%)</h3>
+            
+            <canvas id="soil-humidity-chart"></canvas>
+
+        </section>
+
+
+ <!-------------------- coté enfant ------------->
+    <section class="widget" id="kids-widget">
+        <h2><i class="fa-solid fa-leaf"></i> Le coin des P'tits Jardiniers</h2>
+
+        <div class="kids-content">
+            
+            <div class="plant-of-the-week">
+                <h3>Plante de la semaine : <span id="plant-name">Chargement...</span></h3>
+            </div>
+            
+            <div class="plant-needs">
+                <h4>Ses besoins aujourd'hui :</h4>
+                <div class="need-item">
+                    <span class="need-label">Soleil</span>
+                    <span class="need-visual" id="plant-need-sun"></span>
+                    <span class="need-desc" id="plant-need-sun-desc"></span>
+                </div>
+                <div class="need-item">
+                    <span class="need-label">Eau</span>
+                    <span class="need-visual" id="plant-need-water"></span>
+                    <span class="need-desc" id="plant-need-water-desc"></span>
+                </div>
+            </div>
+
+            <div class="fun-fact">
+                <h4>Le savais-tu ?</h4>
+                <p id="plant-fun-fact">...</p>
+            </div>
+
+        </div>
+    </section>
+
+    </main>
+    <script src="charts.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
